@@ -5,17 +5,31 @@
  */
 package basedatos;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 /**
  *
  * @author Usuario-pc
  */
 public class BaseDatos {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+      Connection cn;
+     
+     public Connection conexión(){
+         try{
+             Class.forName("com.mysql.jdbc.Driver");
+             cn=DriverManager.getConnection("jdbc:mysql://localhost/sistema","root","UAw29hFcWj8PE75X");
+             System.out.println("Conexión exitosa");
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+         }
+         return cn;
+     }
+     
+     Statement createStatement(){
+         throw new UnsupportedOperationException("No soportado");
+     }
     
 }
