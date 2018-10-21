@@ -16,19 +16,18 @@ import java.sql.Statement;
  */
 public class BaseDatos {
 
-      private static Connection cn;
-      private static final String Driver="com.mysql.jdbc.Driver";
-      private static final String url="jdbc:mysql://localhost/sistema";
-      private static final String Myuser="root";
-      private static final String MyPassword="UAw29hFcWj8PE75X";
+        Connection cn;
+      private  String Driver="com.mysql.jdbc.Driver";
+      private  String url="jdbc:mysql://localhost/sistema";
+      private  String Myuser="root";
+      private  String MyPassword="AAAAAAqqqqqq123456";
  
      public Connection conexión(){
          try{
              Class.forName(Driver);
              cn=DriverManager.getConnection(url,Myuser,MyPassword);
-             if(cn!=null){
              System.out.println("Conexión exitosa");
-             }
+             
          }catch(ClassNotFoundException | SQLException e){
              System.out.println(e.getMessage());
          }
