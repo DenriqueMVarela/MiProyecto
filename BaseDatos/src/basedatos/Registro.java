@@ -10,14 +10,13 @@ package basedatos;
  * @author Usuario-pc
  */
 public class Registro extends javax.swing.JFrame {
-
+    BaseDatos co=new BaseDatos();
     /**
      * Creates new form Registro
      */
     public Registro() {
         initComponents();
          setLocationRelativeTo(null);
-        BaseDatos con=new BaseDatos();
     }
 
     /**
@@ -72,6 +71,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel2.setText("Contraseña:");
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -184,6 +188,10 @@ public class Registro extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        co.conexión();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
