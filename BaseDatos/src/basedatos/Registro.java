@@ -24,9 +24,8 @@ public class Registro extends javax.swing.JFrame {
     Connection cn=co.conexión();
     String SQL;
     public DefaultTableModel modelo;
-    /**
-     * Creates new form Registro
-     */
+     String []Datos={"nombre","Contraseña"};
+     String[] registro = new String[2];
     public Registro() {
         initComponents();
          setLocationRelativeTo(null);
@@ -271,15 +270,11 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
-        String []Datos={"Usuarios","Contraseña"};
-        String[] registro = new String[2];
-        
+
         //Se cargan los títulos de las columnas a la tabla
         modelo = new DefaultTableModel  (null, Datos);
         
         //Se usa la coneccion para establecer contacto con la base de datos de MySQL
-        
-        
         //Hay que guardar en la variable la instrucción que "pasaremos" a MySQL
         SQL = "SELECT * from usuario";
         try 
@@ -295,8 +290,8 @@ public class Registro extends javax.swing.JFrame {
           // en los arrays creados anteriormente
             while (rs.next())
             {
-                registro [0] = rs.getString("Usuarios");
-                registro [1] = rs.getString("Contraseña");
+                registro [0] = rs.getString("nombre");
+                registro [1] = rs.getString("contraseña");
                 
                // Al "modelo" de la jTable se mandan los datos guardados en los arrays
                 modelo.addRow(registro);
