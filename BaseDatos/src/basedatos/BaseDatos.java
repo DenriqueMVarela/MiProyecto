@@ -7,6 +7,7 @@ package basedatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -15,14 +16,20 @@ import java.sql.Statement;
  */
 public class BaseDatos {
 
-      Connection cn;
-     
+      private static Connection cn;
+      private static final String Driver="com.mysql.jdbc.Driver";
+      private static final String url="jdbc:mysql://localhost/sistema";
+      private static final String Myuser="root";
+      private static final String MyPassword="UAw29hFcWj8PE75X";
+ 
      public Connection conexión(){
          try{
-             Class.forName("com.mysql.jdbc.Driver");
-             cn=DriverManager.getConnection("jdbc:mysql://localhost/sistema","root","UAw29hFcWj8PE75X");
+             Class.forName(Driver);
+             cn=DriverManager.getConnection(url,Myuser,MyPassword);
+             if(cn!=null){
              System.out.println("Conexión exitosa");
-         }catch(Exception e){
+             }
+         }catch(ClassNotFoundException | SQLException e){
              System.out.println(e.getMessage());
          }
          return cn;
