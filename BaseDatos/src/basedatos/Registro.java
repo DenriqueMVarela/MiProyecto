@@ -5,8 +5,12 @@
  */
 package basedatos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,28 +19,21 @@ import javax.swing.JOptionPane;
  */
 public class Registro extends javax.swing.JFrame {
     BaseDatos co=new BaseDatos();
+    Connection cn=co.conexión();
     String SQL;
+
     /**
      * Creates new form Registro
      */
     public Registro() {
         initComponents();
          setLocationRelativeTo(null);
-         co.conexión();
+       
     }
-    public void Agregar(){
-    String Usuario = TxtUser.getText();
-    String Contraseña =Txtpassword.getText();
-    SQL = "Insert Into usuario values ('"+Usuario+"',"+Contraseña+");";
     
-    try
-    {
-     Statement st = (Statement) co.createStatement();
-     st.executeUpdate(SQL);
-    }
-    catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);  
-    }
+    void limpiar(){
+        TxtUsuario.setText(null);
+        Txtpassword.setText(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +50,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TxtUser = new javax.swing.JTextField();
+        TxtUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
         Txtpassword = new javax.swing.JPasswordField();
@@ -81,24 +78,12 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario:");
 
-        TxtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtUserActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Contraseña:");
 
         Agregar.setText("Guardar");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
-            }
-        });
-
-        Txtpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtpasswordActionPerformed(evt);
             }
         });
 
@@ -115,7 +100,7 @@ public class Registro extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TxtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(TxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                             .addComponent(Txtpassword)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(186, 186, 186)
@@ -128,7 +113,7 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -210,17 +195,22 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtUserActionPerformed
-
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-             Agregar();
+    
+    SQL = "INSERT INTO usuario(nombre,contraseña) VALUES (?,?)";
+    
+    try
+    {
+        PreparedStatement pps=cn.prepareStatement(SQL);
+        pps.setString(1, TxtUsuario.getText());
+        pps.setString(2, Txtpassword.getText());
+        pps.executeUpdate();
+        JOptionPane.showMessageDialog(null,"Registrado!");
+    }
+    catch(SQLException ex){
+        Logger.getLogger(Registro.class.getName()).log(Level.SEVERE,null,ex);
+    }
     }//GEN-LAST:event_AgregarActionPerformed
-
-    private void TxtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtpasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +249,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
-    private javax.swing.JTextField TxtUser;
+    private javax.swing.JTextField TxtUsuario;
     private javax.swing.JPasswordField Txtpassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

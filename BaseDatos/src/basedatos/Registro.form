@@ -132,7 +132,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="TxtUser" pref="96" max="32767" attributes="0"/>
+                                          <Component id="TxtUsuario" pref="96" max="32767" attributes="0"/>
                                           <Component id="Txtpassword" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -151,7 +151,7 @@
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TxtUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -171,10 +171,7 @@
                         <Property name="text" type="java.lang.String" value="Usuario:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="TxtUser">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtUserActionPerformed"/>
-                      </Events>
+                    <Component class="javax.swing.JTextField" name="TxtUsuario">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
@@ -190,9 +187,6 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JPasswordField" name="Txtpassword">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtpasswordActionPerformed"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
