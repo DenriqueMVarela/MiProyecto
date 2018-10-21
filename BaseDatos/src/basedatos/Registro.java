@@ -5,12 +5,17 @@
  */
 package basedatos;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario-pc
  */
 public class Registro extends javax.swing.JFrame {
     BaseDatos co=new BaseDatos();
+    String SQL;
     /**
      * Creates new form Registro
      */
@@ -19,7 +24,20 @@ public class Registro extends javax.swing.JFrame {
          setLocationRelativeTo(null);
          co.conexión();
     }
-
+    public void Agregar(){
+    String Usuario = TxtUser.getText();
+    String Contraseña =Txtpassword.getText();
+    SQL = "Insert Into usuario values ('"+Usuario+"',"+Contraseña+");";
+    
+    try
+    {
+     Statement st = (Statement) co.createStatement();
+     st.executeUpdate(SQL);
+    }
+    catch(SQLException ex){
+        JOptionPane.showMessageDialog(null,ex);  
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +53,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Txtnombre = new javax.swing.JTextField();
+        TxtUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
         Txtpassword = new javax.swing.JPasswordField();
@@ -61,11 +79,11 @@ public class Registro extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Usuario:");
 
-        Txtnombre.addActionListener(new java.awt.event.ActionListener() {
+        TxtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtnombreActionPerformed(evt);
+                TxtUserActionPerformed(evt);
             }
         });
 
@@ -97,7 +115,7 @@ public class Registro extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(TxtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                             .addComponent(Txtpassword)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(186, 186, 186)
@@ -110,7 +128,7 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(Txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -192,12 +210,12 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtnombreActionPerformed
+    private void TxtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtnombreActionPerformed
+    }//GEN-LAST:event_TxtUserActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        
+             Agregar();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void TxtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtpasswordActionPerformed
@@ -241,7 +259,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
-    private javax.swing.JTextField Txtnombre;
+    private javax.swing.JTextField TxtUser;
     private javax.swing.JPasswordField Txtpassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
