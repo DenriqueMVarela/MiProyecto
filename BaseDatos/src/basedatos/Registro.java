@@ -7,11 +7,13 @@ package basedatos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +23,7 @@ public class Registro extends javax.swing.JFrame {
     BaseDatos co=new BaseDatos();
     Connection cn=co.conexión();
     String SQL;
-
+    public DefaultTableModel modelo;
     /**
      * Creates new form Registro
      */
@@ -56,6 +58,9 @@ public class Registro extends javax.swing.JFrame {
         Txtpassword = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        Consultar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,15 +150,47 @@ public class Registro extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        Consultar.setText("Consultar");
+        Consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Consultar)
+                .addGap(53, 53, 53))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(Consultar)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -163,14 +200,14 @@ public class Registro extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar", jPanel4);
@@ -233,6 +270,47 @@ public class Registro extends javax.swing.JFrame {
     limpiar();
     }//GEN-LAST:event_AgregarActionPerformed
 
+    private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
+        String []Datos={"Usuarios","Contraseña"};
+        String[] registro = new String[2];
+        
+        //Se cargan los títulos de las columnas a la tabla
+        modelo = new DefaultTableModel  (null, Datos);
+        
+        //Se usa la coneccion para establecer contacto con la base de datos de MySQL
+        
+        
+        //Hay que guardar en la variable la instrucción que "pasaremos" a MySQL
+        SQL = "SELECT * from usuario";
+        try 
+        {
+            //HAy que mandar la instrucción a MySQL con el Statement y el resultado de ese 
+            //comando se guarda en un ResulSet
+            //(ambos pertenecen a la libreria IMPORT JAVA.SQL )
+
+            Statement st = (Statement) cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            
+           //El ResultSet se explora y se extraen los datos para guardarlos
+          // en los arrays creados anteriormente
+            while (rs.next())
+            {
+                registro [0] = rs.getString("Usuarios");
+                registro [1] = rs.getString("Contraseña");
+                
+               // Al "modelo" de la jTable se mandan los datos guardados en los arrays
+                modelo.addRow(registro);
+            }
+            //Una vez se ha terminado el llenado del modelo, este se manda a la jTable
+            jTable1.setModel (modelo);
+        } 
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+           
+        }
+    }//GEN-LAST:event_ConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +348,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JButton Consultar;
     private javax.swing.JTextField TxtUsuario;
     private javax.swing.JPasswordField Txtpassword;
     private javax.swing.JLabel jLabel1;
@@ -281,6 +360,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
