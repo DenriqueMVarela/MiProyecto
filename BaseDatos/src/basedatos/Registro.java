@@ -89,14 +89,15 @@ public class Registro extends javax.swing.JFrame {
 
         }
     }
-   public void Modificar(){
+    private void Modificar(){
            int Fila=jTable1.getSelectedRow();
             TxtUsuario.setText(jTable1.getValueAt(Fila, 0).toString());
             Txtpassword.setText(jTable1.getValueAt(Fila,1).toString());
     }
     private void Actualizar(){
-      
-             SQL="UPDATE usuario SET nombre='"+TxtUsuario.getText()+"',contraseña='"+Txtpassword.getText()+"'WHERE Id='"+jTable1.getSelectedRow()+"";
+             int Fila=jTable1.getSelectedRow();
+             String Valor=jTable1.getValueAt(Fila, 0).toString();
+             SQL="UPDATE usuario SET nombre='"+TxtUsuario.getText()+"',contraseña='"+Txtpassword.getText()+"'WHERE Id='"+Valor+"'";
         try {
             PreparedStatement pps=cn.prepareStatement(SQL);
             JOptionPane.showMessageDialog(null,"Datos actualizados");
@@ -106,6 +107,22 @@ public class Registro extends javax.swing.JFrame {
             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    private void Eliminar(){
+              int Fila=jTable1.getSelectedRow();
+             String Valor=jTable1.getValueAt(Fila, 0).toString();
+             SQL="DELETE FROM usuario WHERE Id='"+Valor+"'";
+        if (Fila>=0) {
+        try {
+            PreparedStatement pps=cn.prepareStatement(SQL);
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Usuario Eliminado");
+            MostrarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,8 +142,9 @@ public class Registro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Agregar = new javax.swing.JButton();
         Txtpassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BModificar = new javax.swing.JButton();
+        BActualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Consultar = new javax.swing.JButton();
@@ -163,17 +181,24 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Modificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BModificar.setText("Modificar");
+        BModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BModificarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Actualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BActualizar.setText("Actualizar");
+        BActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BActualizarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
             }
         });
 
@@ -191,13 +216,15 @@ public class Registro extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(Agregar)
                         .addGap(39, 39, 39)
-                        .addComponent(jButton1)
+                        .addComponent(BModificar)
                         .addGap(46, 46, 46)
-                        .addComponent(jButton2))
+                        .addComponent(BActualizar)
+                        .addGap(42, 42, 42)
+                        .addComponent(Eliminar))
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(TxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                         .addComponent(Txtpassword)))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +240,9 @@ public class Registro extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BModificar)
+                    .addComponent(BActualizar)
+                    .addComponent(Eliminar))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -253,7 +281,7 @@ public class Registro extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 58, Short.MAX_VALUE)))
+                        .addGap(0, 62, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -335,17 +363,21 @@ public class Registro extends javax.swing.JFrame {
         Insertar();
     }//GEN-LAST:event_AgregarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModificarActionPerformed
        Modificar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BModificarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
        Actualizar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BActualizarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        Eliminar();
+    }//GEN-LAST:event_EliminarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -381,11 +413,12 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JButton BActualizar;
+    private javax.swing.JButton BModificar;
     private javax.swing.JButton Consultar;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JTextField TxtUsuario;
     private javax.swing.JPasswordField Txtpassword;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
