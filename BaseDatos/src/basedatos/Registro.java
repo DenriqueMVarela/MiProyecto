@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package basedatos;
 
 import java.sql.Connection;
@@ -22,23 +18,43 @@ import javax.swing.table.DefaultTableModel;
 public class Registro extends javax.swing.JFrame {
     BaseDatos co=new BaseDatos();
     Connection cn=co.conexión();
-    String SQL;
+    String SQL;//Variable para guardar todos los metodos SQL
     public DefaultTableModel modelo;
-    
      
     public Registro() {
         initComponents();
          setLocationRelativeTo(null);
      
     }
-    
     private void limpiar(){
         TxtUsuario.setText(null);
         Txtpassword.setText(null);
     }
-    
+    private void Insertar(){
+          
+        SQL = "INSERT INTO usuario(nombre,contraseña) VALUES (?,?)";
+             if (TxtUsuario==null && Txtpassword==null) {
+                System.out.println("Debe ingresar los datos");  
+            }else{
+              try
+        {
+            
+            PreparedStatement pps=cn.prepareStatement(SQL);//Nos conectamos a la base de datos para aplicar el metodo
+            pps.setString(1, TxtUsuario.getText());
+            pps.setString(2, Txtpassword.getText());
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Registrado!");
+            MostrarTabla();
+            
+        }
+        catch(SQLException ex){
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        limpiar();
+      }
+    }
     private void MostrarTabla(){
-        String []Datos={"nombre","Contraseña"};
+        String []Datos={"Usuario","Contraseña"};
         String[] registro = new String[2];
         //Se cargan los títulos de las columnas a la tabla
         modelo = new DefaultTableModel (null,Datos);
@@ -50,7 +66,6 @@ public class Registro extends javax.swing.JFrame {
         {
             //HAy que mandar la instrucción a MySQL con el Statement y el resultado de ese
             //comando se guarda en un ResulSet
-            //(ambos pertenecen a la libreria IMPORT JAVA.SQL )
 
             Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -72,6 +87,23 @@ public class Registro extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, ex);
 
+        }
+    }
+   public void Modificar(){
+           int Fila=jTable1.getSelectedRow();
+            TxtUsuario.setText(jTable1.getValueAt(Fila, 0).toString());
+            Txtpassword.setText(jTable1.getValueAt(Fila,1).toString());
+    }
+    private void Actualizar(){
+      
+             SQL="UPDATE usuario SET nombre='"+TxtUsuario.getText()+"',contraseña='"+Txtpassword.getText()+"'WHERE Id='"+jTable1.getSelectedRow()+"";
+        try {
+            PreparedStatement pps=cn.prepareStatement(SQL);
+            JOptionPane.showMessageDialog(null,"Datos actualizados");
+            limpiar();
+            MostrarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -197,6 +229,11 @@ public class Registro extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         Consultar.setText("Consultar");
@@ -295,48 +332,21 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-
-        SQL = "INSERT INTO usuario(nombre,contraseña) VALUES (?,?)";
-
-        try
-        {
-            PreparedStatement pps=cn.prepareStatement(SQL);
-            pps.setString(1, TxtUsuario.getText());
-            pps.setString(2, Txtpassword.getText());
-            pps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registrado!");
-        }
-        catch(SQLException ex){
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE,null,ex);
-        }
-        limpiar();
+        Insertar();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      int Fila=jTable1.getSelectedRow();
-        if (Fila>=0) {
-            TxtUsuario.setText(jTable1.getValueAt(Fila, 0).toString());
-             Txtpassword.setText(jTable1.getValueAt(Fila,1).toString());
-        }else{
-            JOptionPane.showMessageDialog(null,"Fila no seleccionada");
-        }
+       Modificar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     SQL="UPDATE usuario SET nombre='"+TxtUsuario.getText()+"',contraseña='"+Txtpassword.getText()+"'WHERE Id='"+jTable1.getSelectedRow();
-        try {
-            PreparedStatement pps=cn.prepareStatement(SQL);
-            JOptionPane.showMessageDialog(null,"Datos actualizados");
-            limpiar();
-            MostrarTabla();
-        } catch (SQLException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       Actualizar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       
+    }//GEN-LAST:event_jTable1MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
