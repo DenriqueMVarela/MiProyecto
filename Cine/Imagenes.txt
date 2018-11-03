@@ -1,0 +1,2 @@
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Infinity Wars.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Coco.jpg
