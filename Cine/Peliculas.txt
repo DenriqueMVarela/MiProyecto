@@ -1,6 +1,4 @@
-Avengers:Infinity Wars, Tiempo:210 min, Hora:-999999999-01-01T00:00-+999999999-12-31T23:59:59.999999999
-Coco, Tiempo:100 min, Hora:-999999999-01-01T00:00-+999999999-12-31T23:59:59.999999999
-Infinity Wars, Tiempo:120 min, Hora:-999999999-01-01T00:00-+999999999-12-31T23:59:59.999999999
-Venom, Tiempo:120 min, Hora:2018-11-03T20:56:09.177-2018-11-03T20:56:09.178
-Hallowen 2018, Tiempo:120 min, Hora:2018-11-03T20:59:01.808-2018-10-29T20:59:01.809
-Mision Imposible 6, Tiempo:120 min, Hora:2018-11-03T21:01:28.573-2018-10-29T21:01:28.574
+Venom, Tiempo:100 min, Hora:null-null
+Rampage, Tiempo:100 min, Hora:null-null
+Jurassic World, Tiempo:120 min, Hora:null-null
+Los increibles , Tiempo:120 min, Hora:null-null
