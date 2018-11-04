@@ -94,49 +94,7 @@ public class Peliculas {
     public void setDuración(int Duración) {
         this.Duración = Duración;
     }
-        public DefaultListModel Lista(File Archivo){
-           DefaultListModel Milista=new DefaultListModel();
-           try{
-               FileReader fr=new FileReader(Archivo);
-               BufferedReader br=new BufferedReader(fr);
-               String D;
-               while((D=br.readLine())!=null){
-                   StringTokenizer dato=new StringTokenizer(D,",");
-                   Vector X=new Vector();
-                   while(dato.hasMoreTokens()){
-                       X.addElement(dato.nextToken());
-                   }
-                   Milista.addElement(X);
-               }
-           }catch(Exception e){
-               JOptionPane.showMessageDialog(null, e);
-           }
-           return Milista;
-       } 
-        
-          public void SaveFile(Peliculas p,File Archivo){
-               try {
-                   FileWriter fw=new FileWriter(Archivo,true);
-                   try (BufferedWriter bw = new BufferedWriter(fw)) {
-                       bw.write(p.getNombre()+", "+"Tiempo:"+p.getDuración()+" min"+", "+"Hora:"+p.getIn()+"-"+p.getFin());
-                       bw.newLine();
-                   }
-                   JOptionPane.showMessageDialog(null,"Pelicula Agregada");
-               }catch(Exception e){
-                   JOptionPane.showMessageDialog(null, e);
-               }
-         }
-         public void SaveImagen(File fichero,File Archivo){
-              try {
-                   FileWriter fw=new FileWriter(Archivo,true);
-                   try (BufferedWriter bw = new BufferedWriter(fw)) {
-                       bw.write(" "+fichero);
-                       bw.newLine();
-                   }
-               }catch(Exception e){
-                   JOptionPane.showMessageDialog(null, e);
-               }
-         }
+      
      public void guardar(Peliculas p){
         v.addElement(p);
     }

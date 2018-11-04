@@ -1,2 +1,6 @@
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Infinity Wars.jpg
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Coco.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Infinity Wars.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Venom.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Halloween.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Mision Imposible 6.jpg
