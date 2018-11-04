@@ -18,3 +18,4 @@
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Rampage.jpg
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Jurassic World.jpg
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Los Increibles 2.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Infinity Wars.jpg

@@ -2,3 +2,4 @@ Venom, Tiempo:100 min, Hora:null-null
 Rampage, Tiempo:100 min, Hora:null-null
 Jurassic World, Tiempo:120 min, Hora:null-null
 Los increibles , Tiempo:120 min, Hora:null-null
+Avengers:Infinity Wars, Tiempo:210 min, Hora:null-null
