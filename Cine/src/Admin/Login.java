@@ -72,6 +72,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/palomitas-de-maiz.png"))); // NOI18N
         jLabel5.setText("Opciones");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -79,8 +80,8 @@ public class Login extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -97,16 +98,16 @@ public class Login extends javax.swing.JFrame {
                 GestionpeliActionPerformed(evt);
             }
         });
-        jPanel3.add(Gestionpeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 130, 30));
+        jPanel3.add(Gestionpeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 140, 40));
 
-        Salas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/palomitas-de-maiz.png"))); // NOI18N
+        Salas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cinema.png"))); // NOI18N
         Salas.setText("Salas");
         Salas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalasActionPerformed(evt);
             }
         });
-        jPanel3.add(Salas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 120, 30));
+        jPanel3.add(Salas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 140, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/plus-cine.jpg"))); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 159));
