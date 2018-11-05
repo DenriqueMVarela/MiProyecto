@@ -28,12 +28,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 import java.awt.Component;
 import java.awt.Window;
+import java.util.ArrayList;
+import java.util.Iterator;
 public class GestionPeliculas extends javax.swing.JFrame {
        File Archivo=new File("Peliculas.txt");
        File Imagenes=new File("Imagenes.txt");
        Peliculas p=new Peliculas();
        DefaultListModel lista = new DefaultListModel(); 
        File fichero;
+       ArrayList pelis = new ArrayList(); 
        public static String Registros[][] = new String [250][10];
     public GestionPeliculas() {
         initComponents();
@@ -125,6 +128,9 @@ public class GestionPeliculas extends javax.swing.JFrame {
                         Logger.getLogger(Peliculas.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+     public void guardar(Peliculas p){
+        pelis.add(p);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -152,7 +158,7 @@ public class GestionPeliculas extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Titulo:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 88, -1, -1));
 
         NombreP.addActionListener(new java.awt.event.ActionListener() {
@@ -284,9 +290,8 @@ public class GestionPeliculas extends javax.swing.JFrame {
         SaveImagen(fichero, Imagenes);
 //      jList1.setModel(Lista(Archivo));
         ReadFile(Archivo);
-        p.guardar(p);
         Limpiar();
-        
+        guardar(p);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
@@ -357,9 +362,7 @@ public class GestionPeliculas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void NombrePKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombrePKeyTyped
-            if(Character.isDigit(evt.getKeyChar())){
-            evt.consume();
-        }   
+ 
     }//GEN-LAST:event_NombrePKeyTyped
 
     private void DuraciónKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DuraciónKeyTyped

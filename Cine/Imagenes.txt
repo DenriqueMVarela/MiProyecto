@@ -19,3 +19,12 @@
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Jurassic World.jpg
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Los Increibles 2.jpg
  C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Infinity Wars.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Coco.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Mision Imposible 6.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\deadpool 2.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\BlackPanther.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\DragonBall Super La pelicula.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Halloween.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Ralph el demoledor.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\4e17b34fad07b5754b08d577f9723a58.jpg
+ C:\Users\Usuario-pc\Documents\NetBeansProjects\MiProyecto\Cine\src\ImagenesPeli\Fast & Furious.jpg

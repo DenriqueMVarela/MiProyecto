@@ -31,7 +31,7 @@ public class Peliculas {
     LocalDateTime in;
     LocalDateTime fin;
     int Duración;
-    Vector v=new Vector();
+    
     
     public Peliculas(String Nombre, Icon imagen, LocalDateTime ldt, LocalDateTime in, LocalDateTime fin, int Duración) {
         this.Nombre = Nombre;
@@ -93,10 +93,5 @@ public class Peliculas {
 
     public void setDuración(int Duración) {
         this.Duración = Duración;
-    }
-      
-     public void guardar(Peliculas p){
-        v.addElement(p);
-    }
-            
+    }   
 }

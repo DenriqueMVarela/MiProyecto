@@ -3,3 +3,12 @@ Rampage, Tiempo:100 min, Hora:null-null
 Jurassic World, Tiempo:120 min, Hora:null-null
 Los increibles , Tiempo:120 min, Hora:null-null
 Avengers:Infinity Wars, Tiempo:210 min, Hora:null-null
+Coco, Tiempo:100 min, Hora:null-null
+Mision Imposible 6, Tiempo:98 min, Hora:null-null
+Deadpool 2, Tiempo:100 min, Hora:null-null
+La Pantera Negra, Tiempo:100 min, Hora:null-null
+Dragon Ball Super, Tiempo:65 min, Hora:null-null
+Halloween 2018, Tiempo:100 min, Hora:null-null
+Ralph el demoledor 2, Tiempo:100 min, Hora:null-null
+Tomb Raider, Tiempo:100 min, Hora:null-null
+Rápidos y Furiosos 8, Tiempo:120 min, Hora:null-null
